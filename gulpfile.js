@@ -12,7 +12,6 @@ gulp.task('create-book', function(){
 });
 
 
-
 gulp.task('update-book', function(){
  var branch_exists =  'git ls-remote --heads https://github.com/ULL-ESIT-PL-1617/estudiar-cookies-y-sessions-en-expressjs-ale-fran.git book'
  exec(branch_exists, function(err, out, errout){
@@ -23,28 +22,31 @@ gulp.task('update-book', function(){
          if(err) console.log('Error, couldnt create branch');
          else {
            console.log('Branch "book" created');
-
-           var newbranch = 'git filter-branch --subdirectory-filter ./docs gitbook';
-           exec(newbranch, function(err, our, errout){
-             if(err) console.error('Error:' + err);
-             else{
-               console.log('Filtered branch "gitbook" created succesfully');
-             }
-           });
+           updateBook();
+           pushGitbook();
          }
        });
      } else{
-
-
+       updateBook();
+       pushGitbook();
      }
-
    }
  });
+});
 
-var remote = 'gbook';
-  var cmd = 'git checkout gitbook && git add . && git commit -m "update-docs" && git push -f gbook gitbook:master'
+//Pushes to gitbook remote
+function pushGitbook() {
+  var cmd = 'git checkout book && git add . && git commit -m "update-docs" && git push -f gbook book:master'
   exec(cmd, function (err, out, errout) {
     if(err) console.log("Error updating gitbook branch \n" + err);
     else console.log("Gitbook updated succesfully");
-  })
-});
+  });
+}
+
+//Update ./docs master's content to book branch
+function updateBook(){
+  exec('git filter-branch --subdirectory-filter ./docs book', function(err, our, errout){
+    if(err) console.error('Error:' + err);
+    else    console.log('Filtered ./docs to "book" branch');
+  });
+}
