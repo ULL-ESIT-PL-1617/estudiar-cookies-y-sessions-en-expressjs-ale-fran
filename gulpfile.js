@@ -13,10 +13,15 @@ gulp.task('create-book', function(){
 
 gulp.task('update-book', function(){
   //Comprobamos si existe la rama para pushear a gitbook
-  exec('git ls-remote --heads https://github.com/ULL-ESIT-PL-1617/estudiar-cookies-y-sessions-en-expressjs-ale-fran.git book', function(err, out, errout){
+  //exec('git ls-remote --heads https://github.com/ULL-ESIT-PL-1617/estudiar-cookies-y-sessions-en-expressjs-ale-fran.git book', function(err, out, errout){
+  exec('git rev-parse --verify book', function(err, out, errout){
     if(err) console.log('Error checking if branch exists \n' + err);
     else {
-      if(out.length ==  0 && out.includes('fatal')){ //No existe, entonces creamos la rama
+      console.log(out.length ==  0 && out.includes('fatal'));
+      console.log(out.length ==  0);
+      console.log(out.includes('fatal'));
+      console.log("Out: " + out);
+      if(out.includes('fatal')){ //No existe, entonces creamos la rama
         exec('git checkout -b book', function (err, out, errout){
           if(err) console.log('Error, couldnt create branch \n' + err);
           else {
