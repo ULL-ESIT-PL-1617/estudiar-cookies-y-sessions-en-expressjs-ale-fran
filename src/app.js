@@ -9,7 +9,7 @@ app.set('views', __dirname + '/views');
 app.set('viewengine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
-app.use(cookieparser());
+//app.use(cookieparser());
 app.use(bodyparser.urlencoded({
   extended: true
 }));
@@ -20,13 +20,7 @@ app.use(session({
   resave: false
 }));
 
-app.use('/', function (req, res, next) {
-  console.log(req.cookies);
-  console.log('------------');
-  console.log(req.session);
-  next();
-});
-
+/*
 app.get('/', function(req, res){
   var html = `
         <form action="/" method="post">
@@ -43,7 +37,7 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
   req.session.userName = req.body.userName;
   res.redirect('/');
-});
+});*/
 
 
 
