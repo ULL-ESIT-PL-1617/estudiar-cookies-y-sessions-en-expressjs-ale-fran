@@ -11,42 +11,39 @@ gulp.task('create-book', function(){
   });
 });
 
-
 gulp.task('update-book', function(){
- var branch_exists =  'git ls-remote --heads https://github.com/ULL-ESIT-PL-1617/estudiar-cookies-y-sessions-en-expressjs-ale-fran.git book'
- exec(branch_exists, function(err, out, errout){
-   if(err) console.log('Error: ' + err);
-   else {
-     if(out.length ==  0){ //No existe, entonces creamos la rama
-       exec('git checkout -b book', function (err, out, errout){
-         if(err) console.log('Error, couldnt create branch');
+  //Comprobamos si existe la rama para pushear a gitbook
+  exec('git ls-remote --heads https://github.com/ULL-ESIT-PL-1617/estudiar-cookies-y-sessions-en-expressjs-ale-fran.git book', function(err, out, errout){
+    if(err) console.log('Error checking if branch exists \n' + err);
+    else {
+      if(out.length ==  0){ //No existe, entonces creamos la rama
+        exec('git checkout -b book', function (err, out, errout){
+          if(err) console.log('Error, couldnt create branch \n' + err);
+          else {
+            console.log('Branch "book" created'); //Filtramos el contenido de ./docs a la rama
+            exec('git filter-branch --subdirectory-filter ./docs book', function(err, our, errout){
+              if(err) console.error('Error filtering branch content \n' + err);
+              else {
+                exec('git checkout book && git add . && git commit -m "update-gitbook" && git push -f gbook book:master', function (err, out, errout) {
+                  if(err) console.log("Error updating gitbook branch \n" + err);
+                  else console.log("Gitbook updated succesfully");
+                });
+              }
+            });
+          }
+        });
+     } else {
+       exec('git filter-branch --subdirectory-filter ./docs book', function(err, our, errout){
+         if(err) console.error('Error filtering branch content \n' + err);
          else {
-           console.log('Branch "book" created');
-           updateBook();
-           pushGitbook();
+           console.log('Filtered ./docs to "book" branch');
+           exec('git checkout book && git add . && git commit -m "update-gitbook" && git push -f gbook book:master', function (err, out, errout) {
+             if(err) console.log("Error updating gitbook branch \n" + err);
+             else console.log("Gitbook updated succesfully");
+           });
          }
        });
-     } else{
-       updateBook();
-       pushGitbook();
      }
    }
  });
 });
-
-//Pushes to gitbook remote
-function pushGitbook() {
-  var cmd = 'git checkout book && git add . && git commit -m "update-docs" && git push -f gbook book:master'
-  exec(cmd, function (err, out, errout) {
-    if(err) console.log("Error updating gitbook branch \n" + err);
-    else console.log("Gitbook updated succesfully");
-  });
-}
-
-//Update ./docs master's content to book branch
-function updateBook(){
-  exec('git filter-branch --subdirectory-filter ./docs book', function(err, our, errout){
-    if(err) console.error('Error:' + err);
-    else    console.log('Filtered ./docs to "book" branch');
-  });
-}
