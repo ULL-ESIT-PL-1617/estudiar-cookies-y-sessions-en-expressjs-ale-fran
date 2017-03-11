@@ -22,7 +22,7 @@ gulp.task('create-book', function(){
 
 gulp.task('update-book', function(){
   var remote = 'gbook';
-  var cmd = 'git checkout gitbook && git add . && git commit -m "update-docs" && git push -f gitbook gitbook:master'
+  var cmd = 'git checkout gitbook && git add . && git commit -m "update-docs" && git push -f gbook gitbook:master'
   exec(cmd, function (err, out, errout) {
     if(err) console.log("Error updating gitbook branch \n" + err);
     else console.log("Gitbook updated succesfully");
