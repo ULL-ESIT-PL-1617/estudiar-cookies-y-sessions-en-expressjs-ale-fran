@@ -21,7 +21,7 @@ gulp.task('update-book', function(){
           if(err) console.log('Error, couldnt create branch \n' + err);
           else {
             console.log('Branch "book" created'); //Filtramos el contenido de ./docs a la rama
-            exec('git filter-branch --subdirectory-filter -f ./docs book', function(err, our, errout){
+            exec('git filter-branch --subdirectory-filter ./docs -f book', function(err, our, errout){
               if(err) console.error('Error filtering branch content \n' + err);
               else {
                 exec('git checkout book && git add . && git commit -m "update-gitbook" && git push -f gbook book:master', function (err, out, errout) {
@@ -33,7 +33,7 @@ gulp.task('update-book', function(){
           }
         });
      } else {
-       exec('git filter-branch --subdirectory-filter -f ./docs book', function(err, our, errout){
+       exec('git filter-branch --subdirectory-filter ./docs -f book', function(err, our, errout){
          if(err) console.error('Error filtering branch content \n' + err);
          else {
            console.log('Filtered ./docs to "book" branch');
