@@ -1,7 +1,7 @@
 Guia ExpressJS
 ===
 
-En esta guía veremos como funciona expressjs y como crear una aplicación web con nodeJS.
+En esta guía veremos como funciona expressjs y como crear una aplicación web con nodeJS usando las cookies y sessions.
 
 #### Colaboradores
 - [Francisco Palacios](http://franjpr.github.io)
