@@ -16,17 +16,55 @@ gulp.task('deploy-gh-pages', function(){
   });
 });
 
+/*
+1 - Pushear cambios locales
+2 - Comprobar si existe la rama book
+  Si - Crear rama
+  No - Ignorar
+3 - Filter branch (esto vuelca el contenido de docs a la raiz)
+4 - Crear el .gitignore con !*.md
+5 - Push to github
+6 - Push to gitbook remote
+7 - Checkout to master
+*/
+gulp.task('deploy-gitbook', function () {
+  console.log('Deploying gitbook');
+    exec('git add . && git commit -m "Deploy gitbook" && git push origin master', function (err, out, errout) {
+      console.log('Pushing local changes... \n' + errout);
+      exec('git rev-parse --verify book', function (err, out, errout){
+        console.log('Checking book branch... \n' + errout);
+        if(errout.includes('fatal')){
+          console.log('Creating book branch...');
+          exec('git checkout -b book && git filter-branch --subdirectory-filter ./docs -f book && echo "!*.md" >> .gitignore', function (err, out, errout){
+            console.log('Filtering book content from ./docs \n' + errout);
+            exec('git add . && git commit -m "update bookbranch" && git push origin book && git push -f gbook book:master && git checkout master', function (err, out, errout){
+              console.log('Pushing local changes to github & gitbook \n' + errout);
+            });
+          });
+        } else {
+          console.log('Ok');
+          exec('git filter-branch --subdirectory-filter ./docs -f book && echo "!*.md" >> .gitignore', function (err, out, errout){
+            console.log('Filtering book content from ./docs \n' + errout);
+            exec('git add . && git commit -m "update bookbranch" && git push -f origin book && git push -f gbook book:master && git checkout master', function (err, out, errout){
+              console.log('Pushing local changes to github & gitbook \n' + errout);
+            });
+          });
+        }
+      });
+    });
+});
+
 gulp.task('update-book', function(){
   //Comprobamos si existe la rama para pushear a gitbook
   exec('git rev-parse --verify book', function(err, out, errout){
     if(errout.includes('fatal')) {
-      exec('git checkout -b book && echo !*.md >> .gitignore', function (err, out, errout){
+      exec('git checkout -b book', function (err, out, errout){
           if(err) console.log('Error, couldnt create branch \n' + err);
           else {
             console.log('Branch "book" created'); //Filtramos el contenido de ./docs a la rama
-            exec('git filter-branch --subdirectory-filter ./docs -f book', function(err, our, errout){
+            exec('git filter-branch --subdirectory-filter ./docs -f book && echo "!*.md" >> .gitignore', function(err, our, errout){
               console.log('Filtering branch content...');
-              exec('git push -f gbook book:master', function (err, out, errout) {
+              exec('git push -f origin book && git push -f gbook book:master', function (err, out, errout) {
                 if(err) console.log("Error updating gitbook branch \n" + err);
                 else console.log("Gitbook updated succesfully");
               });
@@ -34,9 +72,9 @@ gulp.task('update-book', function(){
           }
         });
      } else {
-       exec('git filter-branch --subdirectory-filter ./docs -f book', function(err, our, errout){
+       exec('git filter-branch --subdirectory-filter ./docs -f book && echo "!*.md" >> .gitignore', function(err, our, errout){
            console.log('Filtering branch content...');
-           exec('git push -f gbook book:master', function (err, out, errout) {
+           exec('git push -f origin book && git push -f gbook book:master', function (err, out, errout) {
              if(err) console.log("Error updating gitbook branch \n" + err);
              else console.log("Gitbook updated succesfully");
            });
