@@ -23,7 +23,7 @@ gulp.task('deploy-gitbook', function () {
       exec('git push origin --delete book && git branch -D book', function (err, out, errout){
         console.log('Cleaning book branch...');
         console.log('Creating a new book branch...');
-        var gitignore = 'echo "node_modules/ >> .gitignore && echo "htmls/ >> .gitignore && echo ".publish/ >> .gitignore'
+        var gitignore = 'echo "node_modules/" >> .gitignore && echo "htmls/" >> .gitignore && echo ".publish/" >> .gitignore'
           exec('git checkout -b book && git filter-branch --subdirectory-filter ./docs -f book && ' + gitignore, function (err, out, errout){
             console.log('Filtering book content from ./docs \n' + errout);
             exec('git add . && git commit -m "update bookbranch" && git push origin book && git push -f gbook book:master && git checkout master', function (err, out, errout){
