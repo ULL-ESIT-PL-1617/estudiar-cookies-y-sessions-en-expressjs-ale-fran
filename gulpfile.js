@@ -54,35 +54,6 @@ gulp.task('deploy-gitbook', function () {
     });
 });
 
-gulp.task('update-book', function(){
-  //Comprobamos si existe la rama para pushear a gitbook
-  exec('git rev-parse --verify book', function(err, out, errout){
-    if(errout.includes('fatal')) {
-      exec('git checkout -b book', function (err, out, errout){
-          if(err) console.log('Error, couldnt create branch \n' + err);
-          else {
-            console.log('Branch "book" created'); //Filtramos el contenido de ./docs a la rama
-            exec('git filter-branch --subdirectory-filter ./docs -f book && echo "!*.md" >> .gitignore', function(err, our, errout){
-              console.log('Filtering branch content...');
-              exec('git push -f origin book && git push -f gbook book:master', function (err, out, errout) {
-                if(err) console.log("Error updating gitbook branch \n" + err);
-                else console.log("Gitbook updated succesfully");
-              });
-            });
-          }
-        });
-     } else {
-       exec('git filter-branch --subdirectory-filter ./docs -f book && echo "!*.md" >> .gitignore', function(err, our, errout){
-           console.log('Filtering branch content...');
-           exec('git push -f origin book && git push -f gbook book:master', function (err, out, errout) {
-             if(err) console.log("Error updating gitbook branch \n" + err);
-             else console.log("Gitbook updated succesfully");
-           });
-       });
-     }
- });
-});
-
 gulp.task('update-gh-pages', function () {
   return gulp.src('./htmls/**/*').pipe(ghpages({"message" : 'ghpages deployed'}));
 });

@@ -12,8 +12,8 @@ Elabore un libro GitBook con sus notas explicando e ilustrando con códigos de e
   - [x] El repo debe tener un directorio docs/ con los MarkDown del libro.
   - [ ] Un directorio src/ con los códigos fuentes de los ejemplos.
   - [ ] Despliegue el libro en las plataformas que hemos visto en las prácticas anteriores
-    - [ ] [GitBook](/)
-    - [ ] [Gh-Page](/)
+    - [x] [GitBook](https://franjpr.gitbooks.io/cookie-session/content/)
+    - [x] [Gh-Page](https://ull-esit-pl-1617.github.io/estudiar-cookies-y-sessions-en-expressjs-ale-fran/)
     - [ ] [IAAS](/)
     - [ ] [Heroku](/)
   - [x] Incorpore los apuntes elaborados en las prácticas anteriores a este
