@@ -16,40 +16,19 @@ gulp.task('deploy-gh-pages', function(){
   });
 });
 
-/*
-1 - Pushear cambios locales
-2 - Comprobar si existe la rama book
-  Si - Crear rama
-  No - Ignorar
-3 - Filter branch (esto vuelca el contenido de docs a la raiz)
-4 - Crear el .gitignore con !*.md
-5 - Push to github
-6 - Push to gitbook remote
-7 - Checkout to master
-*/
 gulp.task('deploy-gitbook', function () {
   console.log('Deploying gitbook');
     exec('git add . && git commit -m "Deploy gitbook" && git push origin master', function (err, out, errout) {
       console.log('Pushing local changes... \n' + errout);
-      exec('git rev-parse --verify book', function (err, out, errout){
-        console.log('Checking book branch... \n' + errout);
-        if(errout.includes('fatal')){
-          console.log('Creating book branch...');
+      exec('git push origin --delete book && git branch -D book', function (err, out, errout){
+        console.log('Cleaning book branch... \n' + errout);
+        console.log('Creating book branch...');
           exec('git checkout -b book && git filter-branch --subdirectory-filter ./docs -f book && echo "!*.md" >> .gitignore', function (err, out, errout){
             console.log('Filtering book content from ./docs \n' + errout);
             exec('git add . && git commit -m "update bookbranch" && git push origin book && git push -f gbook book:master && git checkout master', function (err, out, errout){
               console.log('Pushing local changes to github & gitbook \n' + errout);
             });
           });
-        } else {
-          console.log('Ok');
-          exec('git filter-branch --subdirectory-filter ./docs -f book && echo "!*.md" >> .gitignore', function (err, out, errout){
-            console.log('Filtering book content from ./docs \n' + errout);
-            exec('git add . && git commit -m "update bookbranch" && git push -f origin book && git push -f gbook book:master && git checkout master', function (err, out, errout){
-              console.log('Pushing local changes to github & gitbook \n' + errout);
-            });
-          });
-        }
       });
     });
 });
