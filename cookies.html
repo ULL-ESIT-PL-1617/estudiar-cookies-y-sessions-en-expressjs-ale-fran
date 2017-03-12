@@ -1,0 +1,393 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Cookies · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="cookie-parser.html" />
+    
+    
+    <link rel="prev" href="middlewares.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introducción
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="enrutamiento.html">
+            
+                <a href="enrutamiento.html">
+            
+                    
+                    Enrutamiento básico
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="middlewares.html">
+            
+                <a href="middlewares.html">
+            
+                    
+                    Middlewares
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="cookies.html">
+            
+                <a href="cookies.html">
+            
+                    
+                    Cookies
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="cookie-parser.html">
+            
+                <a href="cookie-parser.html">
+            
+                    
+                    Cookie en ExpressJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="sessions.html">
+            
+                <a href="sessions.html">
+            
+                    
+                    Sessions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="express-session.html">
+            
+                <a href="express-session.html">
+            
+                    
+                    Sessions en ExpressJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Cookies</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="cookies">Cookies</h1>
+<p>Una <em>cookie HTTP</em> es un peque&#xF1;o fragmento de informaci&#xF3;n que el servidor env&#xED;a al navegador del usuario, puede almacenarla ah&#xED; y este reenviarla al servidor
+con la pr&#xF3;xima peticion. Normalmente esto se hace para saber si 2 peticiones provienen del mismo navegador permitiendo as&#xED; mantener a un usuario <em>logeado</em>, por ejemplo.
+De esta forma es posible <em>mantener</em> informaci&#xF3;n, ya que el protocolo HTTP no tiene estado.</p>
+<blockquote>
+<p>Hypertext Transfer Protocol o HTTP es el protocolo de comunicaci&#xF3;n que permite las transferencias de informaci&#xF3;n en la World Wide Web.</p>
+<p>HTTP define la sintaxis y la sem&#xE1;ntica que utilizan los elementos de software de la arquitectura web (clientes, servidores, proxies) para comunicarse</p>
+<p>HTTP es un protocolo sin estado, es decir, no guarda ninguna informaci&#xF3;n sobre conexiones anteriores</p>
+<p><a href="https://es.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank">HTTP Wikipedia</a></p>
+</blockquote>
+<p>Las cookies se usan principalmente para los siguientes prop&#xF3;sitos:</p>
+<ol>
+<li>Mantener la sesion (logins de usuarios, <em>carritos de compras...</em>)</li>
+<li>Personalizacion (Preferencias del usuario)</li>
+<li>Rastreo (Analizar el comportamiento del usuario)</li>
+</ol>
+<p>Las cookies tambi&#xE9;n se usan para el almacenamiento de informacion local en general del navegador, aunque para ello existe  <strong>localStorage</strong> y <strong>sessionStorage</strong>.</p>
+<p>A esta informaci&#xF3;n se puede acceder desde la consola del navegador.</p>
+<ul>
+<li><strong>document.cookie:</strong> Devuelve una <em>string</em> que separa las cookies por <strong>;</strong></li>
+<li><strong>localStorage:</strong> Devuelve un objeto con la informaci&#xF3;n almacenada en el navegador asociada al dominio.</li>
+<li><strong>sessionStorage:</strong> Es como <em>localStorage</em>, con la diferencia de que al cerrar el navegador, dicha informaci&#xF3;n se pierde.</li>
+</ul>
+<h5 id="cookies-vs-localstorage">Cookies vs localStorage</h5>
+<blockquote>
+<p><em>&quot;HTML local storage; better than cookies.&quot;</em></p>
+<p>Antes del HTML5, la informaci&#xF3;n se guardaba en cookies, incluida en cada petici&#xF3;n al servidor. El <strong>localStorage</strong> es m&#xE1;s seguro, y se puede guardar mucha mas informaci&#xF3;n (al menos 5MB) sin afectar el comportamiento de la web, ya que se guarda en local.</p>
+<p><strong>localStorage</strong> funciona por dominios, es decir que todas las paginas de un mismo dominio pueden acceder a la misma informaci&#xF3;n.</p>
+<p><a href="https://www.w3schools.com/html/html5_webstorage.asp" target="_blank">w3Schools</a></p>
+</blockquote>
+<h2 id="creando-cookies">Creando cookies</h2>
+<p>Una cookie se puede crear de la siguiente forma:</p>
+<pre><code>&lt;cookie-name&gt;=&lt;cookie-value&gt;
+</code></pre><p>El servidor le dice al navegador que guarde una cookie (en el lenguaje que sea). La respuesta enviada al navegador contendr&#xE1; la cabecera con la informaci&#xF3;n y el navegador almacenar&#xE1; la cookie.</p>
+<pre><code>HTTP/1.0 200 OK
+Content-type: text/html
+Set-Cookie: yummy_cookie=choco
+Set-Cookie: tasty_cookie=strawberry
+[page content]
+</code></pre><p>Ahora con cada petici&#xF3;n al servidor el navegador enviara las cookies almacenadas usando la cabecera.</p>
+<pre><code>GET /sample_page.html HTTP/1.1
+Host: www.example.org
+Cookie: yummy_cookie=choco; tasty_cookie=strawberry
+</code></pre><h2 id="cookies-en-sesiones">Cookies en sesiones</h2>
+<p>Al crear una cookie sin especificar la fecha de expiraci&#xF3;n, se crea una <em>cookie de sesi&#xF3;n</em> ya que al cerrar el navegador se perder&#xE1; dicha cookie.
+Hay que tener en cuenta que algunos navegadores tienen activada una opci&#xF3;n de restablecer las cookies de sesi&#xF3;n, lo que har&#xE1; permanentes algunas cookies como si el navegador nunca se cerrase.</p>
+<h2 id="cookies-permanentes">Cookies permanentes</h2>
+<p>Para hacer cookies permanentes son <em>(con permanentes se refiere a que no se pierden al cerrar el navegador)</em>.</p>
+<pre><code>Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT;
+</code></pre><h2 id="httponly-cookies">httpOnly cookies</h2>
+<p>Las cookies seguras solo se env&#xED;an al servidor si se usa el protocolo SSL y HTTPS.
+Para prevenir ataques <em>cross-site scripting (XSS)</em>, las HTTP-only cookies no son accesibles a trav&#xE9;s de JavaScript con la propiedad <strong>Document.cookie</strong> o alguna otra API.<br>Para ello se define de la siguiente forma:</p>
+<pre><code>Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly
+</code></pre><h2 id="alcance-de-las-cookies">Alcance de las cookies</h2>
+<p>El alcance est&#xE1; definido por el dominio y ruta (conjunto de urls).</p>
+<p>El dominio especifica el host al cual se va a env&#xED;a la cookie.
+Si no se especifica, por defecto el alcance es del documento actual.
+Si se especifica el dominio, siempre se incluyen los subdominios.</p>
+<p>Si la ruta existe el alcance tambi&#xE9;n se extiende a los sub directorios.</p>
+<h2 id="cookies-del-mismo-site">Cookies del mismo <em>site</em></h2>
+<p>Las cookies del mismo site permiten al servidor asegurar que una cookie no deber&#xED;a ser enviada a peticiones de otros sites, lo que provee de proteccion contra los ataques cross-site requests. Este tipo de cookies aun estan en fase experimental.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="middlewares.html" class="navigation navigation-prev " aria-label="Previous page: Middlewares">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="cookie-parser.html" class="navigation navigation-next " aria-label="Next page: Cookie en ExpressJS">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Cookies","level":"1.5","depth":1,"next":{"title":"Cookie en ExpressJS","level":"1.5.1","depth":2,"path":"cookie-parser.md","ref":"cookie-parser.md","articles":[]},"previous":{"title":"Middlewares","level":"1.4","depth":1,"path":"middlewares.md","ref":"middlewares.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"cookies.md","mtime":"2017-03-12T12:14:40.500Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-12T12:23:01.665Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

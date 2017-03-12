@@ -1,0 +1,481 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Enrutamiento básico · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="middlewares.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introducción
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="enrutamiento.html">
+            
+                <a href="enrutamiento.html">
+            
+                    
+                    Enrutamiento básico
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="middlewares.html">
+            
+                <a href="middlewares.html">
+            
+                    
+                    Middlewares
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="cookies.html">
+            
+                <a href="cookies.html">
+            
+                    
+                    Cookies
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="cookie-parser.html">
+            
+                <a href="cookie-parser.html">
+            
+                    
+                    Cookie en ExpressJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="sessions.html">
+            
+                <a href="sessions.html">
+            
+                    
+                    Sessions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="express-session.html">
+            
+                <a href="express-session.html">
+            
+                    
+                    Sessions en ExpressJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Enrutamiento básico</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="aplicaci&#xF3;n-expressjs">Aplicaci&#xF3;n expressJS</h1>
+<p>Los requisitos para hacer una aplicaci&#xF3;n en expressjs son:</p>
+<ul>
+<li>Un directorio <em>/public</em> con los ficheros html,css..etc</li>
+<li>Un directorio <em>/views</em> con para renderizar las vistas (html&apos;s din&#xE1;micos)</li>
+<li>La aplicaci&#xF3;n en s&#xED; <strong>app.js</strong></li>
+</ul>
+<h2 id="enrutamiento">Enrutamiento</h2>
+<p>El enrutamiento determina c&#xF3;mo una aplicaci&#xF3;n responde ante las peticiones a ciertas rutas.</p>
+<p>Las rutas siguen la siguiente estructura <code>app.METHOD(PATH, HANDLER)</code>:</p>
+<ul>
+<li>app es una instrancia de express.</li>
+<li>METHOD es alguno de los <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods" target="_blank">m&#xE9;todos http</a><ul>
+<li>get</li>
+<li>post</li>
+<li>put</li>
+<li>delete</li>
+<li>...etc</li>
+</ul>
+</li>
+<li>PATH es la ruta en el servidor</li>
+<li>HANDLER es la funcion que se ejecuta cuando se va a esa ruta.</li>
+</ul>
+<p>Por ejemplo:</p>
+<pre><code>var express = require(&apos;express&apos;);
+var path = require(&apos;path&apos;);
+var app = express(); //Instancia de express
+app.listen(process.env.PORT || 8080);
+
+app.use(express.static(path.resolve(&apos;/public&apos;))); //middleware
+
+app.get(&apos;/about&apos;, function(request, response){  //Responde con helloWorld
+  response.send(&apos;Hello World!&apos;)                 //en la pagina about
+});
+
+app.post(&apos;/contact&apos;, function (request, response) {
+  res.send(&apos;Got a POST request&apos;)
+});
+</code></pre><h3 id="acceso-a-las-rutas">Acceso a las rutas</h3>
+<p>Las rutas tambi&#xE9;n aceptan expresiones regulares, como:</p>
+<pre><code>app.get(&apos;/ab?cd&apos;, function (req, res) {
+  //Reponde a abcd, y acd
+  //Porque el ? indica que es opcional justo lo que est&#xE1; antes  
+});
+
+app.get(&apos;/ab+cd&apos;, function (req, res) {
+  //Responde a abcd, abbbbbbbcd
+})
+
+app.get(&apos;/ab*cd&apos;, function (req, res) {
+  //Respone a acd, a(cualquier cosa)cd
+})
+
+app.get(/.*fly$/, function (req, res) {
+  //Responde a (cualquier cosa)fly, que acabe en fly.
+})
+</code></pre><h3 id="parametros-de-rutas">Parametros de rutas</h3>
+<pre><code>app.get(&apos;/users/:uid&apos;, function (req, res) {
+  //Para acceder al user id es a trav&#xE9;s de req.params.uid
+});
+</code></pre><h3 id="manejadores-de-rutas">Manejadores de rutas</h3>
+<p>Puedes proveer una ruta para que llame a distintas callbacks para que act&#xFA;en como <em>middleware</em>.</p>
+<pre><code>app.get(&apos;/path1&apos;, function (req, res, next) {
+    //Codigo..
+    next();
+  },
+  function (req, res) {
+    res.send(&apos;path1&apos;); //Redirige a la pagina path1
+  });
+
+  //Incluso puedes definirlas y pasarlas en un array
+  var f1 = function(req, res, next){ /*Codigo..*/ next();};
+  var f2 = function(req, res, next){ /*Codigo..*/ next();};
+  var f3 = function(req, res, next){ /*Codigo..*/ next();};      
+
+  app.get(&apos;/path1&apos;, [f1, f2, f3]);
+
+  //O combinar las 2 formas
+  app.get(&apos;/path1&apos;, [f1, f2], function(req, res, next) {})
+</code></pre><h3 id="metodos-de-respuesta">Metodos de respuesta</h3>
+<p>Los m&#xE9;todos en el objeto <em>respuesta</em> <strong>(res)</strong> de la tabla pueden enviar una respuesta al cliente y terminar el ciclo de solicitud/respuestas. Si ninguno de estos m&#xE9;todos se invoca desde un manejador de rutas, la solicitud de cliente se dejar&#xE1; colgada.</p>
+<table>
+<thead>
+<tr>
+<th>M&#xE9;todo</th>
+<th>Descripcion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>res.download()</td>
+<td>Solicita un archivo para descargarlo.</td>
+</tr>
+<tr>
+<td>res.end()</td>
+<td>Finaliza el proceso de respuesta.</td>
+</tr>
+<tr>
+<td>res.json()</td>
+<td>Env&#xED;a una respuesta JSON.</td>
+</tr>
+<tr>
+<td>res.redirect()</td>
+<td>Redirecciona una solicitud.</td>
+</tr>
+<tr>
+<td>res.render()</td>
+<td>Representa una plantilla de vista.</td>
+</tr>
+<tr>
+<td>res.send()</td>
+<td>Env&#xED;a una respuesta de varios tipos.</td>
+</tr>
+<tr>
+<td>res.sendFile()</td>
+<td>Env&#xED;a un archivo como una secuencia de octetos.</td>
+</tr>
+<tr>
+<td>res.sendStatus()</td>
+<td>Establece el c&#xF3;digo de estado de la respuesta y env&#xED;a su representaci&#xF3;n de serie como el cuerpo de respuesta.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="expressrouter">express.Router</h3>
+<p>Utilice la clase express.Router para crear manejadores de rutas montables y modulares. Una instancia Router es un sistema de middleware y direccionamiento completo; por este motivo, a menudo se conoce como una &#x201C;miniaplicaci&#xF3;n&#x201D;.
+Para adaptarla a nuestra aplicaci&#xF3;n es con un <em>require</em> como si fuera un modulo normal, lo que antes hay que exportar nuestro middleware.</p>
+<pre><code>//Birds.js
+var express = require(&apos;express&apos;);
+var router = express.Router();
+
+router.use(function timeLog(req, res, next) {
+  console.log(&apos;Time: &apos;, Date.now());
+  next();
+});
+
+router.get(&apos;/&apos;, function(req, res) {
+  res.send(&apos;Birds home page&apos;);
+});
+
+router.get(&apos;/about&apos;, function(req, res) {
+  res.send(&apos;About birds&apos;); &lt;--Para llegar aqui la ruta es /birds/about
+});
+
+module.exports = router;
+</code></pre><pre><code>//App.js
+...
+var birds = require(&apos;./birds&apos;);
+app.use(&apos;/birds&apos;, birds);
+...
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introducción">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="middlewares.html" class="navigation navigation-next " aria-label="Next page: Middlewares">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Enrutamiento básico","level":"1.3","depth":1,"next":{"title":"Middlewares","level":"1.4","depth":1,"path":"middlewares.md","ref":"middlewares.md","articles":[]},"previous":{"title":"Introducción","level":"1.2","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"enrutamiento.md","mtime":"2017-03-12T12:14:40.500Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-12T12:23:01.665Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
