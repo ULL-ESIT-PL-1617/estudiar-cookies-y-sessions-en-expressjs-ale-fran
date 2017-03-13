@@ -20,7 +20,7 @@ gulp.task('deploy-gitbook', function () {
   console.log('Deploying gitbook');
     exec('git add . && git commit -m "Deploy gitbook" && git push origin master', function (err, out, errout) {
       console.log('Pushing local changes... \n' + out);
-      exec('git branch -D book', function (err, out, errout){
+      exec('git push origin --delete book && git branch -D book', function (err, out, errout){
         console.log('Rewriting book branch... \n' + out);
         var gitignore = 'echo node_modules/ >> .gitignore && echo htmls/ >> .gitignore && echo .publish/ >> .gitignore'
           exec('git checkout -b book && git filter-branch --subdirectory-filter ./docs -f book && ' + gitignore, function (err, out, errout){
