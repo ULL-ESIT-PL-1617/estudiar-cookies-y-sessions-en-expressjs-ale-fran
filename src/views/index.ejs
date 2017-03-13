@@ -5,6 +5,13 @@
     <title></title>
   </head>
   <body>
-    Hello <%= name %>
+    <h2>Store your name to a cookie</h2>
+    <p>Hello user: '<%= cookie %>'!</p>
+    <form method="post">
+      <input type="text" name="userName" placeholder="Name">
+      <input type="submit" value="Submit">
+    </form>
+    <br>
+    <a href="/forget">Forget Cookie</a>
   </body>
 </html>
