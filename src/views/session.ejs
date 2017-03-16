@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Session</title>
+  </head>
+  <body>
+    <p><b>Info:</b></p>
+    <ul>
+      <li>Admin privileges = admin ; 1234</li>
+    </ul>
+  <p><%= text %></p>
+    <form method="POST">
+      <input type="text" name="userName" placeholder="User name">
+      <input type="password" name="password">
+      <input type="submit" name="submit" value="Log in">
+    </form>
+
+  <p>If you're logged in as admin, you should see a cat when clicking <a href="/content">here</a></p>
+  <p><a href="/logout"> Log out</a></p>
+  </body>
+</html>

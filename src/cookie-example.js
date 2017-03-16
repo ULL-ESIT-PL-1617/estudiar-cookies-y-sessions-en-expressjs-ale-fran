@@ -17,7 +17,7 @@ app.use(bodyparser.urlencoded({
 
 app.get('/', function (req, res, next){
   var myCookie = (req.cookies.userName) ? req.cookies.userName : 'No cookie stored';
-  res.render('index.ejs', {'cookie' : myCookie});
+  res.render('cookie.ejs', {'cookie' : myCookie});
 });
 
 app.post('/', function (req, res, next) {
