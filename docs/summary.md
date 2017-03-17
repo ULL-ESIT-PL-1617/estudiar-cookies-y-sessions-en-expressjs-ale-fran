@@ -6,4 +6,4 @@
 * [Cookies](cookies.md)
   * [Cookie en ExpressJS](cookie-parser.md)
 * [Sessions](sessions.md)
-  * [Sessions en ExpressJS](express-session.md)
+  * [Sessions en ExpressJS](auth.md)

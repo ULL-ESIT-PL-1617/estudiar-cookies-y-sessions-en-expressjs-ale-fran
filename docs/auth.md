@@ -86,7 +86,7 @@ app.get('/login', function (req, res) {
 });
 ~~~
 
-Por último tenemos dos get de `/logout` y `content`. El primero destruira nuestra session lo cual nos obligara a tener que volver a iniciar sesión para volver acceder al contenido de la pagina. Y la segunda nos servira para comprobar que estamos logueados con éxito.
+Por ultimo tenemos dos get de `/logout` y `content`. El primero destruira nuestra session lo cual nos obligara a tener que volver a iniciar sesión para volver acceder al contenido de la pagina. Y la segunda nos servira para comprobar que estamos logueados con exito.
 
 ~~~
 app.get('/logout', function (req, res) {
